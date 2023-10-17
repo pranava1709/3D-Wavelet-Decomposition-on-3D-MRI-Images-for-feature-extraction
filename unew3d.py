@@ -35,16 +35,10 @@ print(image.shape)
 image_af = image.affine
 print(image_af)
 print(image_af.shape)
-#
-#image_T =torch.unsqueeze(image_T,dim=0)
-#image_T = torch.unsqueeze(image_T,dim=1)
 
-#print(image_T.shape)
 image_T  = image.get_fdata()
-#image_T = cv2.cvtColor(image_T,cv2.COLOR_BGR2GRAY)
 image_T = torch.Tensor(image_T)
 #print(image_T.shape)
-plt.imsave('imn.png',image_T[:,:,0])
 #image_af = image.affine
 #print(image_af)
 #print(image_af.shape)
@@ -86,35 +80,7 @@ def WNO3d(in_channels, out_channels, image):
         xcoeff = np.concatenate((a1,a3,a5,a7),axis =0)
         #xcoeff = np.concatenate(xcoeff)
         print(xcoeff.shape)
-        '''
-        modes1 = tr.shape[-1]
-        print(modes1)
-        modes2 = tr.shape[-2]
-        print(modes2)
-        modes3 = tr.shape[-3]
-        #modes4 = mat1.shape[3]
-
-        scale = (1/(in_channels*out_channels))
-        weights1 = nn.Parameter(
-                scale *torch.randn(in_channels, out_channels, modes1, modes2, modes3))
-        weights2 = nn.Parameter(
-            scale *torch.randn(in_channels, out_channels, modes1, modes2, modes3))
-        weights3 = nn.Parameter(
-                scale * torch.randn(in_channels, out_channels, modes1, modes2, modes3))
-        weights4 = nn.Parameter(
-            scale * torch.randn(in_channels, out_channels, modes1, modes2, modes3))
-
-        weights5 = nn.Parameter(
-                scale * torch.randn(in_channels, out_channels, modes1, modes2, modes3))
-        weights6 = nn.Parameter(
-                scale * torch.randn(in_channels, out_channels, modes1, modes2, modes3))
-      
-        weights1 = np.array(weights1)
-
-        print(weights1.shape)
-        '''
-        
-        
+       
 
         modes1 = 480
         print(modes1)
@@ -138,8 +104,7 @@ def WNO3d(in_channels, out_channels, image):
         weights6 = nn.Parameter(
                 scale * torch.randn(in_channels, out_channels, modes1, modes2, modes3))
       
-        #weights1 = np.array(weights1)
-
+      
         print(weights1.shape)
         
 
@@ -148,10 +113,7 @@ def WNO3d(in_channels, out_channels, image):
         xfeat = np.expand_dims(xfeat,axis = 1)
 
         print(xfeat.shape)
-        #xfeat = np.resize
-        #xfeat = np.resize(xfeat,[xfeat.shape[0],xfeat.shape[0],xfeat.shape[0],xfeat.shape[2],xfeat.shape[3]])
-        #weights = np.resize(weights1,[1,1,480,120,78])
-
+       
         matmu = np.einsum("bixyz,ioxyz->boxyz", xfeat, weights1,casting = 'safe')
         print(matmu.shape)
       
@@ -165,10 +127,7 @@ def WNO3d(in_channels, out_channels, image):
         print(jja.shape)
         print(weights2.shape)
        
-        #jjaa = jja[:,:,:,:,:]
-        #jja  =np.resize(jja,[jja.shape[0],jja.shape[1],weights2.shape[2],jja.shape[3],jja.shape[2]])
-        #print(jja.shape)
-    
+      
         
 
 
@@ -187,10 +146,7 @@ def WNO3d(in_channels, out_channels, image):
         print(matmu.shape)
         jjaaaa1 = np.array_split(jja[0][0],4,axis = 0)
         aaa,bbb,ccc,ddd = jjaaaa1
-        #aaa= np.resize(aaa,[120,120,78])
-        #bbb= np.resize(bbb,[120,120,78])
-        #ccc= np.resize(ccc,[120,120,78])
-        #ddd= np.resize(ddd,[120,120,78])
+    
         
         
         mamu1 =np.array_split(matmu[0][0], 4,axis = 0)
@@ -236,17 +192,7 @@ def WNO3d(in_channels, out_channels, image):
         print(ddd.shape)
         
         
-        #a1 = torch.reshape(a1,[1,1,120,120,155])
-        #a1 = a1.permute(0,1,3,4,2)
-        #b1 = b1.permute(0,1,3,4,2)
-        #c1 = c1.permute(0,1,3,4,2)
-        #d1 = d1.permute(0,1,3,4,2)
-        #aaa = aaa.permute(0,1,3,4,2)
-        #bbb = bbb.permute(0,1,3,4,2)
-        #ccc = ccc.permute(0,1,3,4,2)
-        #ddd = ddd.permute(0,1,3,4,2)
-        
-        
+      
 
 
 
